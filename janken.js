@@ -248,21 +248,21 @@ var game = function() {
 		$('#title').show();
 		
 		// Click to start を点滅させる
-		var message = $('#title h2');
+		var message = $('#click_to_start');
 		var on = function() {
-			message.fadeIn(off);
+			message.fadeIn('slow', off);
 		};
 		var off = function() {
-			message.fadeOut(on);
+			message.fadeOut('slow', on);
 		};
 		off();
 		
 		// クリックされたらゲーム開始
-		$('#title h2').click(function() {
-			$(this).unbind('click');
-			$('#title').hide();
-			$('#score_div').show();
-			game.start();
+		$('#title').click(function() {
+			$(this).unbind('click').hide('fade', 300, function() {
+				$('#score_div').show();
+				game.start();
+			});
 		});
 	};
 
@@ -322,8 +322,7 @@ $(function() {
 	// BGM再生
 	var bgm = new Audio('');
 	bgm.src = 'bgm.mp3';
-	bgm.play();
-	bgm.isMute = false; 
+	bgm.isMute = false;
 
 	// ミュートボタン
 	$('#mute').click(function(){
