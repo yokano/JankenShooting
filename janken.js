@@ -277,7 +277,7 @@ var game = function() {
 		start: function() {
 			$(window).keypress(keypress);
 			$('#score').html(0);
-			enemy.shot();
+			setTimeout(enemy.shot, 1000);
 		},
 
 		// ゲームに敗北
