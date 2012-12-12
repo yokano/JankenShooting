@@ -6,7 +6,7 @@ var handDiv = function(hand) {
 	
 	// 手を爆発させる
 	div.explode = function() {
-		$(this).stop().hide('explode', 'easeOutExpo', 250, function() {
+		$(this).stop(true).effect('explode', 'easeOutExpo', 250, function() {
 			$(this).remove();
 		});
 	}
@@ -15,7 +15,7 @@ var handDiv = function(hand) {
 	div.breakout = function() {
 		$(this).stop().hide('drop', 100, function() {
 			$(this).remove();
-		});
+		});		
 	};
 	return div;
 };
@@ -39,7 +39,7 @@ var player = function() {
 		// 手を発射する
 		shot: function(hand) {
 			var div = handDiv(hand);
-			div.appendTo($('body'))
+			div.appendTo($('#game'))
 			div.animate({left: '800px'}, 3000, 'easeOutQuad', function() {
 				player.out();
 			});
@@ -63,7 +63,9 @@ var player = function() {
 		// 画面外に手が出たら消す
 		out: function() {
 			game.resetGain();
-			hands[0].remove();
+			hands[0].fadeOut(function() {
+				$(this).remove();	
+			});
 			hands.shift();
 		},
 		
@@ -114,8 +116,18 @@ var enemy = function(){
 		var hand = ['gu', 'tyoki', 'pa'][Math.floor(Math.random() * 3)];
 		var div = handDiv(hand);
 		div.addClass('enemy');
-		div.appendTo($('body'));
-		div.animate({left: '0px'}, interval + handMoveInterval, 'linear', game.lose);
+		div.css('opacity', 0);
+		div.appendTo($('#game'));
+		div.animate({ left: '0px' }, {
+			duration: interval + handMoveInterval,
+			easing: 'linear',
+			complete: game.lose
+		});
+		div.animate({ opacity:1 }, {
+			queue: false,
+			duration : 500,
+			easing: 'linear'
+		});
 		hands.push(div);
 		wite();
 	};
@@ -250,7 +262,7 @@ var game = function() {
 	// タイトル画面の表示
 	var title = function() {
 		//タイトルの表示
-		$('#title').show();
+		$('#title').fadeIn();
 		
 		// Click to start を点滅させる
 		var message = $('#click_to_start');
@@ -291,10 +303,7 @@ var game = function() {
 				
 				// タイトル画面へ戻る
 				setTimeout(function() {
-					$('.hand').fadeOut('normal', function() {
-						$('.hand').remove();
-					});
-					$('#score_div').hide();
+					$('.hand').remove();
 					player.resetHands();
 					enemy.resetHands();
 					score = 0;
