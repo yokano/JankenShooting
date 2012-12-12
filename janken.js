@@ -20,7 +20,6 @@ var handDiv = function(hand) {
 	return div;
 };
 
-
 var player = function() {
 	// private
 	var hands = [];
@@ -79,13 +78,17 @@ var player = function() {
 
 
 var enemy = function(){
+	// static
+	var DEFAULT_SHOT_INTERVAL = 2000;
+	var DEFAULT_MOVING_TIME = 3500;	
+	
 	// private
 	var hands = [];
 	var timer = null;
-	var interval = 2000;
-	var handMoveInterval = 3500;
+	var interval = DEFAULT_SHOT_INTERVAL;
+	var handMoveInterval = DEFAULT_MOVING_TIME;
 	var isFinish = false;
-
+	
 	// 待機してから発射
 	var wite = function() {
 		timer = setTimeout(shot, interval);
@@ -101,7 +104,9 @@ var enemy = function(){
 	
 	// ゲーム停止時
 	var stop = function() {
-		clearTimeout(timer)
+		clearTimeout(timer);
+		interval = DEFAULT_SHOT_INTERVAL;
+		handMoveInterval = DEFAULT_MOVING_TIME;
 	};
 	
 	// 発射
@@ -143,10 +148,6 @@ var enemy = function(){
 
 
 var game = function() {
-	// 効果音
-	var se = new Audio('');
-	se.src = 'se.mp3';
-	
 	var score = 0;
 	var addScore = function(s) {
 		score += s;
@@ -159,9 +160,13 @@ var game = function() {
 		}
 		$('#score').html(score);
 	};
+	
+	var se = new Audio('');
+	se.src = 'se.mp3';
+	
+	
 	var isFinish = false;
 	
-	// キーイベント設定
 	var keySettings = {
 		'gu': 103,
 		'tyoki': 116,
@@ -273,7 +278,7 @@ var game = function() {
 		start: function() {
 			$(window).keypress(keypress);
 			$('#score').html(0);
-			enemy.shot();			
+			enemy.shot();
 		},
 
 		// ゲームに敗北
