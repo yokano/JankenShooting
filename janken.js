@@ -265,7 +265,6 @@ var game = function() {
 		// クリックされたらゲーム開始
 		$('#title').click(function() {
 			$(this).unbind('click').hide('fade', 300, function() {
-				$('#score_div').show();
 				game.start();
 			});
 		});
@@ -328,7 +327,7 @@ $(function() {
 	var bgm = new Audio('');
 	bgm.src = 'bgm.mp3';
 	bgm.isMute = false;
-
+	
 	// ミュートボタン
 	$('#mute').click(function(){
 		if(!bgm.isMute) {
@@ -342,8 +341,10 @@ $(function() {
 	// ヘルプボタンのモーダル
 	$('#dialog').dialog({
 		autoOpen: false,
-		width: 800,
-		height: 550,
+		width: 500,
+		show: { effect:'fade', duration:200 },
+		hide: { effect:'fade', duration:200 },
+		draggable: false,
 		resizable: false
 	});
 	
@@ -353,7 +354,7 @@ $(function() {
 	});
 	
 	// キーコンフィグ
-	$('#key_change').click(function() {
+	$('#key_change').button().click(function() {
 		var guKey = $('#gu_key').val();
 		var tyokiKey = $('#tyoki_key').val();
 		var paKey = $('#pa_key').val();

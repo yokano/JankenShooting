@@ -11,9 +11,11 @@
 		<script src="janken.js"></script>
 	</head>
 	<body>
-		<h1 id="score_div">SCORE: <span id="score"></span></h1>
-		<div id="help">？</div>
-		<div id="mute">♪</div>
+		<div>
+			<div id="score_div">SCORE: <span id="score"></span></div>
+			<div id="help">？</div>
+			<div id="mute">♪</div>
+		</div>
 		<div id="title">
 			<div id="janken_shooting">JANKEN  Shooting!</div>
 			<div id="click_to_start">Click to start</div>
@@ -32,9 +34,7 @@
 			<ul>
 				<li>出した手を１つ引っ込める: <input id="breakout_key" type="text" value="w" size="1" maxlength="1"></input>キー</li>
 			</ul>
-			<div style="margin-left:auto; width: 100px; margin-right:10px">
-				<button id="key_change" style="cursor:pointer">完了</button>
-			</div>
+			<div id="key_change" style="cursor:pointer">キー設定を変更する</div>
 		</div>
 	</body>
 </html>

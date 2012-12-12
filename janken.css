@@ -1,3 +1,7 @@
+html {
+	min-width: 960px;
+}
+
 body {
 	background-image: url("background.png");
 	background-position: center;
@@ -6,6 +10,8 @@ body {
 	background-attachment: scroll;
 	width: 960px;
 	height: 720px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .hand {
@@ -28,7 +34,13 @@ body {
 
 #score_div {
 	color: white;
-	display: none;
+	font-family: sans-serif;
+	position: absolute;
+	top: 30px;
+	font-size: large;
+}
+#score {
+	font-size: xx-large;
 }
 
 .gain {
@@ -44,7 +56,7 @@ body {
 	width: 100%;
 	background-color: black;
 	text-align: center;
-	position: absolute;
+	position: relative;
 	top: 240px;
 	cursor: pointer;
 	box-shadow: 0px 0px 10px 10px black;
@@ -67,44 +79,29 @@ body {
 	cursor: pointer;
 	color: white;
 	position: absolute;
-	left: 900px;
-	top: 0px;
-	font-size: 80px;
-	padding-bottom: 10px;
-	padding-left: 15px;
-	
-	width: 100px;
-	height: 100px;
-	
-	border-style: solid;
-	border-color: white;
-	border-radius: 100px;
-	-webkit-border-radius: 100px;
-	-moz-border-radius: 100px;
+	right: 50px;
+	font-size: 40px;
+	width: 50px;
+	height: 50px;
 }
 #help:hover {
-	background-color: gray;
+	color: gray;
 }
-
+#dialog {
+	font-size: small;
+}
+#key_change {
+	margin-left: 65%;
+}
 #mute {
 	cursor: pointer;
 	color: white;
 	position: absolute;
-	left: 800px;
-	top: 0px;
-	font-size: 40px;
-	padding-bottom: 10px;
-	padding-left: 15px;
-	
+	right: 150px;
+	font-size: 35px;
 	width: 50px;
 	height: 50px;
-	
-	border-style: solid;
-	border-color: white;
-	border-radius: 100px;
-	-webkit-border-radius: 100px;
-	-moz-border-radius: 100px;
 }
 #mute:hover {
-	background-color: gray;
-};
+	color: gray;
+}
