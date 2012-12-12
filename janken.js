@@ -2,7 +2,7 @@
 var handDiv = function(hand) {
 	var div = $('<div class="hand"></div>');
 	div.attr('hand', hand);
-	div.css('background-image', 'url("' + hand + '.png")');
+	div.css('background-image', 'url("img/' + hand + '.png")');
 	
 	// 手を爆発させる
 	div.explode = function() {
@@ -49,7 +49,7 @@ var player = function() {
 		
 		// 獲得している得点の表示
 		gain: function(score) {
-			$('.gain:eq(0)').stop().html('+'+score).effect('bounce', 250, function() {
+			$('.gain:eq(0)').stop().html('+'+score).effect('bounce', 500, function() {
 				$(this).stop().empty();
 			});
 		},
@@ -174,7 +174,7 @@ var game = function() {
 	};
 	
 	var se = new Audio('');
-	se.src = 'se.mp3';
+	se.src = 'sound/se.mp3';
 	
 	
 	var isFinish = false;
@@ -334,7 +334,7 @@ $(function() {
 	
 	// BGM再生
 	var bgm = new Audio('');
-	bgm.src = 'bgm.mp3';
+	bgm.src = 'sound/bgm.mp3';
 	bgm.isMute = false;
 	
 	// ミュートボタン
