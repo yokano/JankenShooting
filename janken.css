@@ -68,7 +68,7 @@ body {
 	width: 100%;
 	background-color: black;
 	text-align: center;
-	position: relative;
+	position: absolute;
 	top: 240px;
 	cursor: pointer;
 	box-shadow: 0px 0px 10px 10px black;
@@ -118,4 +118,44 @@ body {
 }
 #mute:hover {
 	color: gray;
+}
+
+#shot_button_div {
+	position: relative;
+	top: 470px;
+	left: 150px;
+}
+.shot_button {
+    position: absolute;
+	width: 130px;
+	height: 130px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+}
+#shot_gu {
+	background-image: url("img/gu_button.png");
+}
+//#shot_gu:hover {
+//	background-image: url("img/gu_button_hover.png");
+//}
+#shot_tyoki {
+	left: 185px;
+	background-image: url("img/tyoki_button.png");
+}
+#shot_tyoki:hover {
+	background-image: url("img/tyoki_button_hover.png");
+}
+#shot_pa {
+	left: 370px;
+	background-image: url("img/pa_button.png");
+}
+#shot_pa:hover {
+	background-image: url("img/pa_button_hover.png");
+}
+#breakout {
+	left: 545px;
+	background-image: url("img/breakout_button.png");
+}
+#breakout:hover  {
+	background-image: url("img/breakout_button_hover.png");
 }

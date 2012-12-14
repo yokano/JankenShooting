@@ -4,63 +4,54 @@ var handDiv = function(hand) {
 	div.attr('hand', hand);
 	div.css('background-image', 'url("img/' + hand + '.png")');
 	
-	// 手を爆発させる
 	div.explode = function() {
 		$(this).stop(true).effect('explode', 'easeOutExpo', 250, function() {
 			$(this).remove();
 		});
 	}
 	
-	// 手をサラッと消す
 	div.breakout = function() {
 		$(this).stop().hide('drop', 100, function() {
 			$(this).remove();
 		});		
 	};
+	
 	return div;
 };
 
 var player = function() {
-	// private
 	var hands = [];
-	
-	// public
+		
 	return {
-		// 手のリストを取得する
 		getHands: function() {
 			return hands;
 		},
 		
-		// 手のリストをリセット
 		resetHands: function() {
 			hands = [];
 		},
 		
-		// 手を発射する
 		shot: function(hand) {
 			var div = handDiv(hand);
 			div.appendTo($('#game'))
 			div.animate({left: '800px'}, 3000, 'easeOutQuad', function() {
 				player.out();
 			});
-			div.append($('<div class="gain"></div>'));  // 得点表示の準備
+			div.append($('<div class="gain"></div>'));
 			hands.push(div);
 		},
 		
-		// 獲得している得点の表示
 		gain: function(score) {
 			$('.gain:eq(0)').stop().html('+'+score).effect('bounce', 500, function() {
 				$(this).stop().empty();
 			});
 		},
 		
-		// プレイヤーの手が負けたら爆発
 		miss: function() {
 			hands[0].explode();
 			hands.shift();
 		},
 		
-		// 画面外に手が出たら消す
 		out: function() {
 			game.resetGain();
 			hands[0].fadeOut(function() {
@@ -69,7 +60,6 @@ var player = function() {
 			hands.shift();
 		},
 		
-		// 先頭の手を避難させる
 		breakout: function() {
 			hands[0].breakout();
 			hands.shift();
@@ -80,18 +70,15 @@ var player = function() {
 
 
 var enemy = function(){
-	// static
 	var DEFAULT_SHOT_INTERVAL = 2000;
 	var DEFAULT_MOVING_TIME = 3500;	
 	
-	// private
 	var hands = [];
 	var timer = null;
 	var interval = DEFAULT_SHOT_INTERVAL;
 	var handMoveInterval = DEFAULT_MOVING_TIME;
 	var isFinish = false;
 	
-	// 待機してから発射
 	var wite = function() {
 		timer = setTimeout(shot, interval);
 		
@@ -104,14 +91,13 @@ var enemy = function(){
 		}
 	};
 	
-	// ゲーム停止時
+	// game stop
 	var stop = function() {
 		clearTimeout(timer);
 		interval = DEFAULT_SHOT_INTERVAL;
 		handMoveInterval = DEFAULT_MOVING_TIME;
 	};
 	
-	// 発射
 	var shot = function() {
 		var hand = ['gu', 'tyoki', 'pa'][Math.floor(Math.random() * 3)];
 		var div = handDiv(hand);
@@ -133,31 +119,24 @@ var enemy = function(){
 	};
 	
 	return {
-		// 手のリストをリセット
 		resetHands: function() {
 			hands = [];
 		},
 		
-		// 手のリストを取得
 		getHands: function() {
 			return hands;
 		},
 		
-		// 手を出す
 		shot: shot,
 		
-		// 先頭の手が爆発		
 		miss: function() {
 			hands[0].explode();
 			hands.shift();
 		},
 		
-		// 手を出すのをやめる
 		stop: stop
 	};
 }();
-
-
 
 var game = function() {
 	var score = 0;
@@ -179,6 +158,7 @@ var game = function() {
 	
 	var isFinish = false;
 	
+
 	var keySettings = {
 		'gu': 103,
 		'tyoki': 116,
@@ -284,10 +264,26 @@ var game = function() {
 
 	// public method
 	return {
-
 		// ゲーム開始
 		start: function() {
 			$(window).keypress(keypress);
+			$('#shot_gu').bind(trigger, function(e) {
+				e.preventDefault();
+				keypress({charCode: keySettings.gu});
+			});	
+			$('#shot_tyoki').bind(trigger, function(e) {
+				e.preventDefault();
+				keypress({charCode: keySettings.tyoki});
+			});
+			$('#shot_pa').bind(trigger, function(e) {
+				e.preventDefault();
+				keypress({charCode: keySettings.pa});
+			});
+			$('#breakout').bind(trigger, function(e) {
+				e.preventDefault();
+				keypress({charCode: keySettings.breakout});
+			});
+			
 			$('#score').html(0);
 			setTimeout(enemy.shot, 1000);
 		},
@@ -300,6 +296,7 @@ var game = function() {
 				$('*').stop();
 				enemy.stop();
 				$(window).unbind('keypress');
+				$('.shot_button').unbind('click');
 				
 				// タイトル画面へ戻る
 				setTimeout(function() {
@@ -329,6 +326,7 @@ var game = function() {
 }();
 
 // 最初にタイトル画面を表示
+var trigger = (window.ontouchstart === null) ? 'touchstart' : 'click';
 $(function() {
 	game.title();
 	
@@ -392,4 +390,14 @@ $(function() {
 			$('#dialog').dialog('close');
 		}
 	});
+	
+	if(trigger == 'click') {
+		$(['gu', 'tyoki', 'pa']).each(function(_, hand) {
+			$('#shot_'+hand).hover(function() {
+				$(this).css('background-image', 'url("img/'+hand+'_button_hover.png")');
+			}, function() {
+				$(this).css('background-image', 'url("img/'+hand+'_button.png")');
+			});
+		});
+	}
 });
