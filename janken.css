@@ -51,7 +51,7 @@ body {
 	font-size: xx-large;
 }
 
-.gain {
+.additional_score {
 	font-size: 30px;
 	position: absolute;
 	bottom: 100px;
@@ -135,9 +135,9 @@ body {
 #shot_gu {
 	background-image: url("img/gu_button.png");
 }
-//#shot_gu:hover {
-//	background-image: url("img/gu_button_hover.png");
-//}
+#shot_gu:hover {
+	background-image: url("img/gu_button_hover.png");
+}
 #shot_tyoki {
 	left: 185px;
 	background-image: url("img/tyoki_button.png");
@@ -152,10 +152,10 @@ body {
 #shot_pa:hover {
 	background-image: url("img/pa_button_hover.png");
 }
-#breakout {
+#back {
 	left: 545px;
-	background-image: url("img/breakout_button.png");
+	background-image: url("img/back_button.png");
 }
-#breakout:hover  {
-	background-image: url("img/breakout_button_hover.png");
+#back:hover  {
+	background-image: url("img/back_button_hover.png");
 }

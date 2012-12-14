@@ -9,7 +9,12 @@
 		<link rel="stylesheet" href="lib/css/smoothness/jquery-ui-1.9.2.custom.min.css">
 		<script src="lib/jquery.js"></script>
 		<script src="lib/jqueryui.js"></script>
-		<script src="janken.js"></script>
+		<!-- <script src="janken.js"></script> -->
+		<script src="hand.js"></script>
+		<script src="player.js"></script>
+		<script src="enemy.js"></script>
+		<script src="game.js"></script>
+		<script src="main.js"></script>
 	</head>
 	<body>
 		<div id="game">
@@ -24,7 +29,7 @@
 				<div id="shot_gu" class="shot_button"></div>
 				<div id="shot_tyoki" class="shot_button"></div>
 				<div id="shot_pa" class="shot_button"></div>
-				<div id="breakout" class="shot_button"></div>
+				<div id="back" class="shot_button"></div>
 			</div>
 		</div>
 		
@@ -39,7 +44,7 @@
 			<p>連続して相手の手を破壊するとコンボボーナスがもらえるぞ！</p>
 			<p>相手の手に破壊されると減点されるから要注意だ！そんなときは出した手を急いで引っ込めてしまおう！</p>
 			<ul>
-				<li>出した手を１つ引っ込める: <input id="breakout_key" type="text" value="w" size="1" maxlength="1"></input>キー</li>
+				<li>出した手を１つ引っ込める: <input id="back_key" type="text" value="w" size="1" maxlength="1"></input>キー</li>
 			</ul>
 			<div id="key_change" style="cursor:pointer">キー設定を変更する</div>
 		</div>
