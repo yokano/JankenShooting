@@ -21,15 +21,47 @@ var game = function() {
 	var isFinish = false;
 	var score = 0;
 	var addScore = function(s) {
-		score += s;
-		$('#score').html(score);
+		var div = $('#score');
+		var target = score + s;
+		if(div.html() != score) {
+			div.html(score);
+		}
+		var now = score;
+		var count = function() {
+			div.html(now);
+			if(target > now) {
+				now++;
+				timer = setTimeout(count, 10);
+			} else {
+				clearTimeout(timer);
+			}
+		};
+		var timer = setTimeout(count, 10);
+		score = target;
 	};
 	var missScore = function(s) {
-		score -= s;
-		if(score < 0) {
-			score = 0;
+		var div = $('#score');
+		var target = score - s;
+		if(div.html() != score) {
+			div.html(score);
 		}
-		$('#score').html(score);
+		if(target < 0) {
+			target = 0;
+		}
+		var now = score;
+		var count = function() {
+			div.html(now);
+			if(target < now) {
+				now--;
+				timer = setTimeout(count, 10);
+			} else {
+				clearTimeout(timer);
+				div.css('color', 'white');
+			}
+		};
+		div.css('color', 'red');
+		var timer = setTimeout(count, 10);
+		score = target;
 	};
 	
 	var se = new Audio('');
@@ -165,6 +197,8 @@ var game = function() {
 			$(window).unbind('keyup');
 			$('.shot_button').unbind('click');
 			$('#levelup').hide();
+			$('.additonal_score').remove();
+			$('.subtractive_score').remove();
 			
 			// Return to title
 			setTimeout(function() {
