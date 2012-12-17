@@ -1,5 +1,6 @@
 var game = function() {
-	var COMBO_RATE = 2.5;
+	var COMBO_RATE = 2;
+	var SUBTRACTIVE_SCORE = 100;
 	var COLLISION_LOOP_INTERVAL = 50;  // ms
 	var DEFAULT_GAIN = 10;
 	var isVictory = {
@@ -99,13 +100,12 @@ var game = function() {
 				} else if(isVictory[playerHands[0].attr('hand')][enemyHands[0].attr('hand')]) {
 					// Win
 					enemy.miss();
-					addScore(currentGain);
 					player.showAdditionalScore(currentGain);
 					currentGain = Math.floor(currentGain * COMBO_RATE);
 				} else {
 					// Lose
+					player.showSubtractiveScore(SUBTRACTIVE_SCORE);
 					player.miss();
-					missScore(20);
 					currentGain = DEFAULT_GAIN;
 				}
 			}
@@ -226,6 +226,8 @@ var game = function() {
 		showTitle: showTitle,
 		clear: clear,
 		showLevelUp: showLevelUp,
-		toggleMute: toggleMute
+		toggleMute: toggleMute,
+		addScore: addScore,
+		missScore: missScore
 	};
 }();

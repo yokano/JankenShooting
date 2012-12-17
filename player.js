@@ -1,6 +1,6 @@
 var player = function() {
 	var hands = [];  // Array of jQuery objects (div)
-	var SHOT_INTERVAL = 100; // (ms)	
+	var SHOT_INTERVAL = 100; // (ms)
 	var prev = 0;
 	var now = 0;
 	
@@ -22,17 +22,44 @@ var player = function() {
 		prev = now;
 		
 		var div = hand(kind);
-		div.append($('<div class="additional_score"></div>'));
 		div.appendTo($('#game'));
 		div.animate({left: '800px'}, 3000, 'easeOutQuad', out);
 		hands.push(div);
 	};
 	
 	var showAdditionalScore = function(score) {
-		$('.additional_score:eq(0)').stop().html('+'+score).effect('bounce', 500, function() {
-			$(this).stop().empty();  // Show 500ms only
+		var pos = hands[0].position();
+		var additionalScore = $('<div class="additional_score">+' + score + '</div>');
+		additionalScore.css('top', pos.top).css('left', pos.left).hide().appendTo($('#game'));
+		additionalScore.show('bounce', 500, function() {
+			var pos = $('#score').position();
+			$(this).animate({
+				left: pos.left,
+				top: pos.top + 25,
+				'font-size': '15px'
+			}, 500, function() {
+				$(this).remove();
+				game.addScore(score);
+			});
 		});
 	};
+	
+	var showSubtractiveScore = function(score) {
+		var pos = hands[0].position();
+		var additionalScore = $('<div class="subtractive_score">-' + score + '</div>');
+		additionalScore.css('top', pos.top).css('left', pos.left).hide().appendTo($('#game'));
+		additionalScore.show('bounce', 500, function() {
+			var pos = $('#score').position();
+			$(this).animate({
+				left: pos.left,
+				top: pos.top + 25,
+				'font-size': '15px'
+			}, 500, function() {
+				$(this).remove();
+				game.missScore(score);
+			});
+		});
+	}
 	
 	// Lose enemy's hand
 	var miss = function() {
@@ -62,6 +89,7 @@ var player = function() {
 		resetHands: resetHands,
 		shot: shot,
 		showAdditionalScore: showAdditionalScore,
+		showSubtractiveScore: showSubtractiveScore,
 		miss: miss,
 		out: out,
 		back: back
