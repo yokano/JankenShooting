@@ -133,7 +133,7 @@ var game = function() {
 		
 		$('#score').html(0);
 		collisionLoop = setInterval(collisionCheck, COLLISION_LOOP_INTERVAL);
-		setTimeout(enemy.shot(), 1000); // Wait after click
+		showLevelUp(1, enemy.shot);
 	};
 	
 	var stop = function() {
@@ -145,10 +145,10 @@ var game = function() {
 			enemy.stop();
 			$(window).unbind('keypress');
 			$('.shot_button').unbind('click');
+			$('#levelup').hide();
 			
 			// Return to title
 			setTimeout(function() {
-				$('.hand').remove();
 				player.resetHands();
 				enemy.resetHands();
 				score = 0;
@@ -166,12 +166,32 @@ var game = function() {
 		keySettings = setting;
 	};
 	
+	// Clear all levels
+	var clear = function() {
+		alert('おめでとう！ゲームクリアです！');
+		stop();
+	};
+	
+	var showLevelUp = function(level, callback) {
+		if(callback == undefined) {
+			callback = function(){};
+		}
+		$('#levelup').hide('slide', {direction: 'left'}, function() {
+			$(this).html('Level ' + level);
+			setTimeout(function() {
+				$('#levelup').show('slide', {direction: 'right'}, callback);
+			}, 500);
+		});
+	};
+	
 	// Public
 	return {
 		start: start,
 		stop: stop,
 		resetGain: resetGain,
 		changeKeySettings: changeKeySettings,
-		showTitle: showTitle
+		showTitle: showTitle,
+		clear: clear,
+		showLevelUp: showLevelUp
 	};
 }();

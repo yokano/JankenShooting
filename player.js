@@ -9,6 +9,7 @@ var player = function() {
 	};
 	
 	var resetHands = function() {
+		$('.hand').stop().remove();
 		hands = [];
 	};
 	
@@ -42,8 +43,10 @@ var player = function() {
 	// Remove a hand when it got in the far right of the screen
 	var out = function() {
 		game.resetGain();
-		hands[0].fadeOut($(this).remove);
-		hands.shift();
+		if(hands.length > 0) {
+			hands[0].fadeOut($(this).remove);
+			hands.shift();
+		}
 	};
 	
 	var back = function() {
