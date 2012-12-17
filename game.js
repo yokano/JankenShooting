@@ -50,14 +50,29 @@ var game = function() {
 	};
 	
 	var keypress = function(e) {
-		var command = getCommand(e.charCode);		
+		var command = getCommand(e.charCode);
 		if(command == 'back') {
 			currentGain = 10;
 			player.back();
+			if(trigger == 'click') {
+				$('#back').css('background-image', 'url("img/back_button_hover.png")');
+			}
 		} else if(command == 'gu' || command == 'tyoki' || command == 'pa') {
 			player.shot(command);
+			if(trigger == 'click') {
+				$('#shot_' + command).css('background-image', 'url("img/' + command + '_button_hover.png")');
+			}
 		}
 	}; 
+	
+	var keyup = function(e) {
+		var command = getCommand(e.keyCode + 32);  // BIG LETTER -> small letter : for jQuery
+		if(trigger == 'click' && command == 'back') {
+			$('#back').css('background-image', 'url("img/back_button.png")');
+		} else {
+			$('#shot_' + command).css('background-image', 'url("img/' + command + '_button.png")');
+		}
+	}
 	
 	var currentGain = DEFAULT_GAIN; // For combo
 	var collisionCheck = function() {
@@ -116,6 +131,7 @@ var game = function() {
 	var collisionLoop;
 	var start = function() {
 		$(window).keypress(keypress);
+		$(window).keyup(keyup);
 		$('#shot_gu').bind(trigger, function(e) {
 			e.preventDefault();
 			keypress({charCode: keySettings.gu});
@@ -146,6 +162,7 @@ var game = function() {
 			$('*').stop();
 			enemy.stop();
 			$(window).unbind('keypress');
+			$(window).unbind('keyup');
 			$('.shot_button').unbind('click');
 			$('#levelup').hide();
 			

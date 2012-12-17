@@ -139,29 +139,17 @@ body {
 #shot_gu {
 	background-image: url("img/gu_button.png");
 }
-#shot_gu:hover {
-	background-image: url("img/gu_button_hover.png");
-}
 #shot_tyoki {
 	left: 185px;
 	background-image: url("img/tyoki_button.png");
-}
-#shot_tyoki:hover {
-	background-image: url("img/tyoki_button_hover.png");
 }
 #shot_pa {
 	left: 370px;
 	background-image: url("img/pa_button.png");
 }
-#shot_pa:hover {
-	background-image: url("img/pa_button_hover.png");
-}
 #back {
 	left: 545px;
 	background-image: url("img/back_button.png");
-}
-#back:hover  {
-	background-image: url("img/back_button_hover.png");
 }
 
 .button_char {

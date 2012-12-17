@@ -62,5 +62,16 @@ $(function() {
 				$(this).css('background-image', 'url("img/'+hand+'_button.png")');
 			});
 		});
+		$('#back').hover(function() {
+			$(this).css('background-image', 'url("img/back_button_hover.png")');
+		}, function() {
+			$(this).css('background-image', 'url("img/back_button.png")');
+		});
 	}
+	
+	// If smartphone, mute by defalut.
+	if(trigger == 'touchstart') {
+		$('#mute').click();
+	}
+
 });
