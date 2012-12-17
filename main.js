@@ -5,19 +5,7 @@ $(function() {
 	game.showTitle();
 	
 	// Initialize interfaces below
-	
-	var bgm = new Audio('');
-	bgm.src = 'sound/bgm.mp3';
-	bgm.isMute = false;
-	
-	$('#mute').click(function(){
-		if(!bgm.isMute) {
-			bgm.pause();
-		} else {
-			bgm.play();
-		}
-		bgm.isMute = !bgm.isMute;
-	});
+	$('#mute').click(game.toggleMute);
 	
 	// Modal of help
 	$('#dialog').dialog({

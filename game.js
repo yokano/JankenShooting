@@ -35,10 +35,10 @@ var game = function() {
 	se.src = 'sound/se.mp3';
 	
 	var keySettings = {
-		gu: 103,
-		tyoki: 116,
-		pa: 112,
-		back: 119
+		gu: 122,
+		tyoki: 120,
+		pa: 99,
+		back: 118
 	};
 	
 	var getCommand = function(char) {
@@ -71,7 +71,9 @@ var game = function() {
 			
 			// Check collision
 			if(pp.left <= ep.left && ep.left <= pp.left + 100) {
-				se.play();
+				if(!isMute) {
+					se.play();
+				}
 				
 				// Run off
 				if(playerHands[0].attr('hand') == enemyHands[0].attr('hand')) {
@@ -188,6 +190,16 @@ var game = function() {
 		});
 	};
 	
+	var isMute = false;
+	var toggleMute = function() {
+		isMute = !isMute;
+		if(isMute) {
+			$('#mute').addClass('on');
+		} else {
+			$('#mute').removeClass('on');
+		}
+	};
+	
 	// Public
 	return {
 		start: start,
@@ -196,6 +208,7 @@ var game = function() {
 		changeKeySettings: changeKeySettings,
 		showTitle: showTitle,
 		clear: clear,
-		showLevelUp: showLevelUp
+		showLevelUp: showLevelUp,
+		toggleMute: toggleMute
 	};
 }();

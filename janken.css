@@ -119,6 +119,9 @@ body {
 #mute:hover {
 	color: gray;
 }
+#mute.on {
+	color: gray;
+}
 
 #shot_button_div {
 	position: relative;
