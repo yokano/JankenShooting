@@ -64,8 +64,7 @@ var game = function() {
 		score = target;
 	};
 	
-	var se = new Audio('');
-	se.src = 'sound/se.mp3';
+	var comboCount = 1;  // For combo sounds
 	
 	var keySettings = {
 		gu: 122,
@@ -85,7 +84,7 @@ var game = function() {
 	var keypress = function(e) {
 		var command = getCommand(e.charCode);
 		if(command == 'back') {
-			currentGain = 10;
+			resetGain();
 			player.back();
 			if(trigger == 'click') {
 				$('#back').css('background-image', 'url("img/back_button_hover.png")');
@@ -107,6 +106,15 @@ var game = function() {
 		}
 	}
 	
+	var sounds = [];
+	for(var i = 0; i <= 6; i++) {
+		var se = new Audio('');
+		se.src = 'sound/se' + i + '.mp3';
+		sounds.push(se);
+	}
+	var seMiss = new Audio('');
+	seMiss.src = ('sound/miss.mp3');
+	
 	var currentGain = DEFAULT_GAIN; // For combo
 	var collisionCheck = function() {
 		var playerHands = player.getHands();
@@ -119,26 +127,25 @@ var game = function() {
 			
 			// Check collision
 			if(pp.left <= ep.left && ep.left <= pp.left + 100) {
-				if(!isMute) {
-					se.play();
-				}
-				
 				// Run off
 				if(playerHands[0].attr('hand') == enemyHands[0].attr('hand')) {
 					// Draw
 					player.miss();
 					enemy.miss();
-					currentGain = DEFAULT_GAIN;
+					resetGain();
 				} else if(isVictory[playerHands[0].attr('hand')][enemyHands[0].attr('hand')]) {
 					// Win
 					enemy.miss();
 					player.showAdditionalScore(currentGain);
 					currentGain = Math.floor(currentGain * COMBO_RATE);
+					sounds[comboCount % 7].play();
+					comboCount++;
 				} else {
 					// Lose
 					player.showSubtractiveScore(SUBTRACTIVE_SCORE);
 					player.miss();
-					currentGain = DEFAULT_GAIN;
+					resetGain();
+					seMiss.play();
 				}
 			}
 		}
@@ -182,6 +189,7 @@ var game = function() {
 		});
 		
 		$('#score').html(0);
+		comboCount = 1;
 		collisionLoop = setInterval(collisionCheck, COLLISION_LOOP_INTERVAL);
 		showLevelUp(1, enemy.shot);
 	};
@@ -189,6 +197,7 @@ var game = function() {
 	var stop = function() {
 		if(!isFinish) {
 			isFinish = true;
+			comboCount = 1;
 			clearInterval(collisionLoop);
 			alert('ゲーム終了　' + score + '点');
 			$('*').stop();
@@ -213,6 +222,7 @@ var game = function() {
 	
 	var resetGain = function() {
 		currentGain = DEFAULT_GAIN;
+		comboCount = 1;
 	};
 	
 	var changeKeySettings = function(setting) {
@@ -229,7 +239,10 @@ var game = function() {
 		stop();
 	};
 	
+	var clearSE = new Audio('');
+	clearSE.src = 'sound/clear.mp3';
 	var showLevelUp = function(level, callback) {
+		clearSE.play();
 		if(callback == undefined) {
 			callback = function(){};
 		}
