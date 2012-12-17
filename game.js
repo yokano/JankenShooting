@@ -163,6 +163,10 @@ var game = function() {
 	};
 	
 	var changeKeySettings = function(setting) {
+		$('#char_gu').html(String.fromCharCode(setting.gu));
+		$('#char_tyoki').html(String.fromCharCode(setting.tyoki));
+		$('#char_pa').html(String.fromCharCode(setting.pa));
+		$('#char_back').html(String.fromCharCode(setting.back));
 		keySettings = setting;
 	};
 	
