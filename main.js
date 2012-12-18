@@ -16,23 +16,8 @@ $(function() {
 	// Initialize interfaces below
 	$('#mute').click(game.toggleMute);
 	
-	// Modal of help
-	$('#dialog').dialog({
-		autoOpen: false,
-		width: 500,
-		show: { effect:'fade', duration:200 },
-		hide: { effect:'fade', duration:200 },
-		draggable: false,
-		resizable: false
-	});
-	
-	// Open modal when ? button clicked
-	$('#help').click(function() {
-		$('#dialog').dialog('open');
-	});
-	
 	// KeyConfig
-	$('#key_change').button().click(function() {
+	var keyChange = function() {
 		var guKey = $('#gu_key').val();
 		var tyokiKey = $('#tyoki_key').val();
 		var paKey = $('#pa_key').val();
@@ -52,9 +37,9 @@ $(function() {
 		checker[backKey] = null;
 		
 		if(guKey == '' || tyokiKey == '' || paKey == '' || backKey == '') {
-			alert('入力されていないキーがあります');
+			alert(term[currentLang].no_inputted_key);
 		} else if (Object.keys(checker).length < 4) {
-			alert("重複したキーが設定されています");
+			alert(term[currentLang].duplicated_keys);
 		} else {
 			var settings = {
 				'gu': guKey.charCodeAt(0),
@@ -65,6 +50,45 @@ $(function() {
 			game.changeKeySettings(settings);
 			$('#dialog').dialog('close');
 		}
+	};
+	
+	var updateText = function() {
+		var explanation = $('#explanation');
+		explanation.empty();
+		for(var i in term[currentLang].explanation) {
+			explanation.append($('<p>' + term[currentLang].explanation[i] + '</p>'));
+		}
+		$('.ui-dialog-title').html(term[currentLang].how_to_play);
+		$('#gu_label').html(term[currentLang].gu);
+		$('#tyoki_label').html(term[currentLang].tyoki);
+		$('#pa_label').html(term[currentLang].pa);
+		$('#back_label').html(term[currentLang].back);
+		$('#key_change_button').html(term[currentLang].change_key_config);
+	};
+	
+	var changeLang = function(lang) {
+		currentLang = lang;
+		updateText();
+	};
+	
+	// Modal of help
+	$('#dialog').dialog({
+		autoOpen: false,
+		width: 500,
+		show: { effect:'fade', duration:200 },
+		hide: { effect:'fade', duration:200 },
+		draggable: false,
+		resizable: false,
+		buttons: [
+			{text:'English', id:'english', class:'language', click:function(){changeLang('en');}},
+			{text:'日本語', id:'japanese', class:'language', click:function(){changeLang('ja');}},
+			{text:'キー設定を変更', id:'key_change_button', click:keyChange}
+		]
+	});
+	
+	// Open modal when ? button clicked
+	$('#help').click(function() {
+		$('#dialog').dialog('open');
 	});
 	
 	// Bind events shot buttons

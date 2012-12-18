@@ -11,6 +11,7 @@
 		<link rel="stylesheet" href="lib/css/smoothness/jquery-ui-1.9.2.custom.min.css">
 		<script src="lib/jquery.js"></script>
 		<script src="lib/jqueryui.js"></script>
+		<script src="term.js"></script>
 		<script src="hand.js"></script>
 		<script src="player.js"></script>
 		<script src="enemy.js"></script>
@@ -38,20 +39,20 @@
 			</div>
 		</div>
 		
-		<div id="dialog" title="JANKEN Shooting! の遊び方">
-			<p>画面右から迫ってくるグー、チョキ、パーを破壊しよう！</p>
-			<p>キーを押すとグー、チョキ、パーを飛ばせるぞ！連射も可能だ！下のテキストボックスに好きなキーを設定できるぞ！</p>
+		<div id="dialog" title="じゃんけんシューティング！の遊び方">
+			<div id="explanation">
+				<p>画面右から迫ってくるグー、チョキ、パーを破壊しよう！</p>
+				<p>キーを押すとグー、チョキ、パーを飛ばせるぞ！連射も可能だ！</p>
+				<p>連続して相手の手を破壊するとコンボボーナスがもらえるぞ！</p>
+				<p>相手の手に破壊されると減点されるから要注意だ！そんなときは出した手を急いで引っ込めてしまおう！</p>
+				<p>下のテキストボックスに好きなキーを設定できるぞ！</p>
+			</div>
 			<ul>
-				<li>グー: <input id="gu_key" type="text" value="z" size="1" maxlength="1"></input>キー</li>
-				<li>チョキ: <input id="tyoki_key" type="text" value="x" size="1" maxlength="1"></input>キー</li>
-				<li>パー: <input id="pa_key" type="text" value="c" size="1" maxlength="1"></input>キー</lit>
+				<li><span id="gu_label">グー</span>: <input id="gu_key" type="text" value="z" size="1" maxlength="1"></input></li>
+				<li><span id="tyoki_label">チョキ</span>: <input id="tyoki_key" type="text" value="x" size="1" maxlength="1"></input></li>
+				<li><span id="pa_label">パー</span>: <input id="pa_key" type="text" value="c" size="1" maxlength="1"></input></li>
+				<li><span id="back_label">出した手を１つ引っ込める</span>: <input id="back_key" type="text" value="v" size="1" maxlength="1"></input></li>
 			</ul>
-			<p>連続して相手の手を破壊するとコンボボーナスがもらえるぞ！</p>
-			<p>相手の手に破壊されると減点されるから要注意だ！そんなときは出した手を急いで引っ込めてしまおう！</p>
-			<ul>
-				<li>出した手を１つ引っ込める: <input id="back_key" type="text" value="v" size="1" maxlength="1"></input>キー</li>
-			</ul>
-			<div id="key_change" style="cursor:pointer">キー設定を変更する</div>
 			
 			<div id="preload"></div>
 		</div>

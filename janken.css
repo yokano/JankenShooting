@@ -109,9 +109,6 @@ body {
 #dialog {
 	font-size: small;
 }
-#key_change {
-	margin-left: 65%;
-}
 
 #shot_button_div {
 	position: relative;
@@ -196,4 +193,16 @@ body {
        background-image: url("img/gu.png");
        background-image: url("img/tyoki.png");
        background-image: url("img/pa.png");
+}
+
+.language * {
+	font-size: small;
+}
+
+#key_change_button {
+	width: 200px;
+}
+
+#japanese {
+	margin-right: 100px;
 }

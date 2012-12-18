@@ -199,7 +199,7 @@ var game = function() {
 			isFinish = true;
 			comboCount = 1;
 			clearInterval(collisionLoop);
-			alert('ゲーム終了　' + score + '点');
+			alert('GAME OVER  SCORE:' + score);
 			$('*').stop();
 			enemy.stop();
 			$(window).unbind('keypress');
@@ -235,7 +235,7 @@ var game = function() {
 	
 	// Clear all levels
 	var clear = function() {
-		alert('おめでとう！ゲームクリアです！');
+		alert(term[currentLang].congrats);
 		stop();
 	};
 	
