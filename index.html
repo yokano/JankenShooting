@@ -21,6 +21,7 @@
 	<body>
 		<div id="game">
 			<div id="score_div">SCORE: <span id="score">0</span></div>
+			<div id="ranking_button"></div>
 			<div id="help">？</div>
 			<div id="levelup">Level <span id="level">1</span></div>
 			<div id="title">
@@ -53,8 +54,15 @@
 				<li><span id="pa_label">パー</span>: <input id="pa_key" type="text" value="c" size="1" maxlength="1"></input></li>
 				<li><span id="back_label">出した手を１つ引っ込める</span>: <input id="back_key" type="text" value="v" size="1" maxlength="1"></input></li>
 			</ul>
-			
-			<div id="preload"></div>
 		</div>
+		
+		<div id="ranking_modal" title="RANKING: TOP30">
+			<ol id="ranking_list">
+			
+			</ol>
+		</div>
+		
+		<div id="preload"></div>
+
 	</body>
 </html>

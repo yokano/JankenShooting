@@ -16,7 +16,12 @@ var term = {
 		how_to_play: 'How to play Janken Shooting!',
 		no_inputted_key: 'Some textbox not inputted.',
 		duplicated_keys: 'Some keys are duplicated.',
-		congrats: 'Congratulations! You cleared all levels!'
+		congrats: 'Congratulations! You cleared all levels!',
+		upload_check: 'GAME OVER. Send score to ranking?',
+		input_your_name: 'Input your name.',
+		registered_ranking: 'Registerd your score into ranking',
+		your_rank: 'Your rank',
+		ajax_error: 'Sorry, network error.'
 	},
 	ja: {
 		explanation: [
@@ -34,6 +39,11 @@ var term = {
 		how_to_play: 'じゃんけんシューティング！の遊び方',
 		no_inputted_key: '入力されていないキーがあります',
 		duplicated_keys: '重複したキーが設定されています',
-		congrats: 'おめでとう！すべてのレベルをクリアしました！'
+		congrats: 'おめでとう！すべてのレベルをクリアしました！',
+		upload_check: 'GAME OVER. ランキングにスコアを送信しますか？',
+		input_your_name: '名前を入力してください',
+		registered_ranking: 'ランキングに登録しました',
+		your_rank: 'あなたの順位',
+		ajax_error: 'ネットワークエラーが発生しました'
 	}
 };

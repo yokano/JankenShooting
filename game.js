@@ -199,14 +199,35 @@ var game = function() {
 			isFinish = true;
 			comboCount = 1;
 			clearInterval(collisionLoop);
-			alert('GAME OVER  SCORE:' + score);
+			if(window.confirm(term[currentLang].upload_check)) {
+				var name = window.prompt(term[currentLang].input_your_name);
+				name = escape(name);
+				$.ajax({
+					url: '/register',
+					async: false,
+					success: function(data) {
+						console.log(data);
+						alert(term[currentLang].registered_ranking);
+						alert(term[currentLang].your_rank + ': ' + data.rank);
+					},
+					data: {
+						name: name,
+						score: score
+					},
+					dataType: 'json',
+					error: function() {
+						alert(term[currentLang].ajax_error);
+					}
+				});
+			}
+			
 			$('*').stop();
 			enemy.stop();
 			$(window).unbind('keypress');
 			$(window).unbind('keyup');
 			$('.shot_button').unbind('click');
 			$('#levelup').hide();
-			$('.additonal_score').remove();
+			$('.addtional_score').remove();
 			$('.subtractive_score').remove();
 			
 			// Return to title
