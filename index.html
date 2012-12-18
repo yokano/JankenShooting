@@ -10,7 +10,6 @@
 		<link rel="stylesheet" href="lib/css/smoothness/jquery-ui-1.9.2.custom.min.css">
 		<script src="lib/jquery.js"></script>
 		<script src="lib/jqueryui.js"></script>
-		<!-- <script src="janken.js"></script> -->
 		<script src="hand.js"></script>
 		<script src="player.js"></script>
 		<script src="enemy.js"></script>
@@ -21,7 +20,6 @@
 		<div id="game">
 			<div id="score_div">SCORE: <span id="score">0</span></div>
 			<div id="help">？</div>
-			<div id="mute">♪</div>
 			<div id="levelup">Level <span id="level">1</span></div>
 			<div id="title">
 				<div id="janken_shooting">JANKEN  Shooting!</div>
@@ -53,6 +51,8 @@
 				<li>出した手を１つ引っ込める: <input id="back_key" type="text" value="v" size="1" maxlength="1"></input>キー</li>
 			</ul>
 			<div id="key_change" style="cursor:pointer">キー設定を変更する</div>
+			
+			<div id="preload"></div>
 		</div>
 	</body>
 </html>

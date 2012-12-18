@@ -254,16 +254,6 @@ var game = function() {
 		});
 	};
 	
-	var isMute = false;
-	var toggleMute = function() {
-		isMute = !isMute;
-		if(isMute) {
-			$('#mute').addClass('on');
-		} else {
-			$('#mute').removeClass('on');
-		}
-	};
-	
 	// Public
 	return {
 		start: start,
@@ -273,7 +263,6 @@ var game = function() {
 		showTitle: showTitle,
 		clear: clear,
 		showLevelUp: showLevelUp,
-		toggleMute: toggleMute,
 		addScore: addScore,
 		missScore: missScore
 	};

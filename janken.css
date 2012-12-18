@@ -112,22 +112,6 @@ body {
 #key_change {
 	margin-left: 65%;
 }
-#mute {
-	cursor: pointer;
-	color: white;
-	position: absolute;
-	top: 20px;
-	right: 130px;
-	font-size: 35px;
-	width: 50px;
-	height: 50px;
-}
-#mute:hover {
-	color: gray;
-}
-#mute.on {
-	color: gray;
-}
 
 #shot_button_div {
 	position: relative;
@@ -199,4 +183,17 @@ body {
 	white-space: nowrap;
 	font-size: xx-large;
 	display: none;
+}
+
+#preload {
+       width: 0px;
+       height: 0px;
+       display: inline;
+       background-image: url("img/back_button_hover.png");
+       background-image: url("img/gu_button_hover.png");
+       background-image: url("img/tyoki_button_hover.png");
+       background-image: url("img/pa_button_hover.png");
+       background-image: url("img/gu.png");
+       background-image: url("img/tyoki.png");
+       background-image: url("img/pa.png");
 }

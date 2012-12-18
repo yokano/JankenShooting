@@ -29,6 +29,11 @@ $(function() {
 		var paKey = $('#pa_key').val();
 		var backKey = $('#back_key').val();
 		
+		guKey = guKey.toLowerCase();
+		tyokiKey = tyokiKey.toLowerCase();
+		paKey = paKey.toLowerCase();
+		backKey = backKey.toLowerCase();
+				
 		// Assign inputted character to empty object.
 		// If keys are duplicative, those will be overrided and reduces the number of elements.
 		var checker = {};
