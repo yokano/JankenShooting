@@ -2,6 +2,15 @@
 var trigger = (window.ontouchstart === null) ? 'touchstart' : 'click';
 
 $(function() {
+	// preload
+	(new Image()).src  =  'img/back_button_hover.png';
+	(new Image()).src  =  'img/gu_button_hover.png';
+	(new Image()).src  =  'img/pa_button_hover.png';
+	(new Image()).src  =  'img/tyoki_button_hover.png';
+	(new Image()).src  =  'img/gu.png';
+	(new Image()).src  =  'img/pa.png';
+	(new Image()).src  =  'img/tyoki.png';
+	
 	game.showTitle();
 	
 	// Initialize interfaces below
