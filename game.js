@@ -197,7 +197,7 @@ var game = function() {
 	var stop = function() {
 		if(!isFinish) {
 			isFinish = true;
-			comboCount = 1;
+			resetGain();
 			clearInterval(collisionLoop);
 			if(window.confirm(term[currentLang].upload_check)) {
 				var name = window.prompt(term[currentLang].input_your_name);
@@ -270,6 +270,7 @@ var game = function() {
 		$('#levelup').hide('slide', {direction: 'left'}, function() {
 			$(this).html('Level ' + level);
 			setTimeout(function() {
+				resetGain();
 				$('#levelup').show('slide', {direction: 'right'}, callback);
 			}, 500);
 		});
