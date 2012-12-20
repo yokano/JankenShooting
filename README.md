@@ -1,40 +1,33 @@
 JankenShooting
 ==============
 
-<a href="http://www.youtube.com/watch?v=bB8Rd3gD6U0"><img src="https://raw.github.com/yokano/JankenShooting/master/ss.jpg"/></a>
+<a href="http://www.youtube.com/watch?v=bB8Rd3gD6U0"><img src="https://raw.github.com/yokano/JankenShooting/master/ss.jpg"/></a>  
 Click image to jump youtube
 
-じゃんけんの手を発射して敵の手を破壊するゲームです。  
-連続で相手の手を破壊することでコンボボーナスを入手できます。  
-オンラインランキングに対応しています。  
-GoogleChrome推奨です。他のブラウザではうまく動きません。  
+Promulagte: Google Chrome.  
+This is a browser game you shoot Janken hands for blast enemies.  
+You can get combo bonuses by blast enemies at one time.  
+This game has a ranking system.
 
-##使い方
+##How to play
 
-http://jankenshooting.appspot.com/  
-をWebブラウザで開いてください  
-GoogleChromeに対応しています  
+Open URL:  
+http://jankenshooting.appspot.com/
 
-画面右上の？マークで自由にキーを割り当てることができます。  
+You can setting key configs by click ? button.
 
-画面をクリックするとゲームが始まります。  
-画面下のボタンをクリックすると手を飛ばせます。  
-一番右の矢印ボタンで手を引っ込めることができます。  
+Start game by click screen.  
+Click bottom buttons or press Z,X,C to shoot Janken Hands.  
+You can back a hand by click arrow button or V key.
 
-１つの手で連続して敵を倒すと点数が２倍に増えるコンボボーナスが発生します。  
-敵の手が画面左端まで到達したらゲームオーバーです。  
-ゲームが終了したら点数をランキングへ送信できます。
+Combo bonuses occur when blast some enemies at one time. It is multiplicative.  
+If a enemy touches left of screen, game is over. You can send the score to ranking system.
 
-ランキングでは上位３０名の名前と点数が表示されます。
+Ranking system shows names upper 30 rank.
 
-##仕組み
-ゲームはJavaScriptで書かれています。  
-Ajaxを使用してGoogleAppEngine上にランキングを保存しています。
+##Workings
+This game written by Javascript.  
+Ranking system is working on Google App Engine.
 
-##環境
-クライアントファイルをサーバ上に設置して  
-index.htmlを開くとゲームが始まります。  
-GoogleAppEngine上に配置するとランキングを機能させることができます。
-
-##連絡先
+##Contact
 yuta.okano@gmail.com
