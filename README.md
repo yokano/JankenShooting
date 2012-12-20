@@ -1,7 +1,8 @@
 JankenShooting
 ==============
 
-<iframe width="420" height="315" src="http://www.youtube.com/embed/bB8Rd3gD6U0" frameborder="0" allowfullscreen></iframe>
+<a href="http://www.youtube.com/watch?v=bB8Rd3gD6U0"><img src="https://raw.github.com/yokano/JankenShooting/master/ss.jpg"/></a>
+Click image to jump youtube
 
 じゃんけんの手を発射して敵の手を破壊するゲームです。  
 連続で相手の手を破壊することでコンボボーナスを入手できます。  
