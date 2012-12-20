@@ -1,0 +1,15 @@
+application: jankenshooting
+version: 1-2-1
+runtime: go
+api_version: go1
+
+handlers:
+- url: /register
+  script: _go_app
+- url: /get
+  script: _go_app
+- url: /
+  static_files: client/index.html
+  upload: client/index.html
+- url: /
+  static_dir: client

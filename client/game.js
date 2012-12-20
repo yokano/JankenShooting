@@ -206,7 +206,6 @@ var game = function() {
 					url: '/register',
 					async: false,
 					success: function(data) {
-						console.log(data);
 						alert(term[currentLang].registered_ranking);
 						alert(term[currentLang].your_rank + ': ' + data.rank);
 					},
@@ -227,7 +226,7 @@ var game = function() {
 			$(window).unbind('keyup');
 			$('.shot_button').unbind('click');
 			$('#levelup').hide();
-			$('.addtional_score').remove();
+			$('.additional_score').remove();
 			$('.subtractive_score').remove();
 			
 			// Return to title
